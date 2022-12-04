@@ -1,9 +1,8 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { Logo, Home, User, Club, Wanted, Search, Bell } from "../Assets/img/Logo";
-import LogoImg from "../Assets/img/Logo.png";
 import Image from "next/image";
 import DefaultImage from "../Assets/img/defaultImg.svg";
 
@@ -13,36 +12,63 @@ const Header = () => {
   const router = useRouter();
   const [current, setCurrent] = useState<CurrentHeader>("HOME");
 
-  const onClick = (value: CurrentHeader) => {
-    setCurrent(value);
-  };
+  useEffect(() => {
+    switch (router.pathname) {
+      case "/":
+        setCurrent("HOME");
+        break;
+      case "/student":
+        setCurrent("STUDENT");
+        break;
+      case "/club":
+        setCurrent("CLUB");
+        break;
+      case "/gather":
+        setCurrent("GATHER");
+        break;
+      case "/mypage":
+        setCurrent("MYPAGE");
+        break;
+      case "/notice":
+        setCurrent("GATHER");
+        break;
+      case "/my":
+        setCurrent("MYPAGE");
+        break;
+      default:
+        setCurrent("HOME");
+        break;
+    }
+  }, [router]);
 
   return (
     <Container>
       <Wrapper>
         <Link href="/">
-          <Click onClick={() => onClick("HOME")}>
+          <Click>
             <Logo color="white" width="86" height="22"></Logo>
           </Click>
         </Link>
         <Link href="/">
-          <Click onClick={() => onClick("HOME")}>
+          <Click>
             <Home color={current === "HOME" ? "#FD3078" : "white"}></Home>
           </Click>
         </Link>
         <Link href="/student">
-          <Click onClick={() => onClick("STUDENT")}>
+          <Click>
             <User color={current === "STUDENT" ? "#FD3078" : "white"}></User>
           </Click>
         </Link>
         <Link href="/club">
-          <Click onClick={() => onClick("CLUB")}>
+          <Click>
             <Club color={current === "CLUB" ? "#FD3078" : "white"}></Club>
           </Click>
         </Link>
-        <Click onClick={() => onClick("GATHER")}>
-          <Wanted color={current === "GATHER" ? "#FD3078" : "white"}></Wanted>
-        </Click>
+        <Link href="/notice">
+          <Click>
+            <Wanted color={current === "GATHER" ? "#FD3078" : "white"}></Wanted>
+          </Click>
+        </Link>
       </Wrapper>
       <Wrapper>
         <Pos>
@@ -52,14 +78,16 @@ const Header = () => {
         {/* {localStorage.getItem("access_token") ? ( */}
         <>
           <Bell />
-          <Link href="/My">
-            <Image
-              src={DefaultImage}
-              width={30}
-              height={30}
-              style={{ backgroundColor: "white", borderRadius: "50px" }}
-              alt=""
-            />
+          <Link href="/my">
+            <Click>
+              <Image
+                src={DefaultImage}
+                width={30}
+                height={30}
+                style={{ backgroundColor: "white", borderRadius: "50px" }}
+                alt=""
+              />
+            </Click>
           </Link>
         </>
         {/* // ) : (

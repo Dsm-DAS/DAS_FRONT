@@ -2,8 +2,8 @@ import Head from "next/head";
 import Image from "next/image";
 import styled from "styled-components";
 import Slider from "../components/Slider";
-import ClubCard from "../components/UserCard/ClubCard";
-import UserCard from "../components/UserCard/UserCard";
+import ClubCard from "../components/MainPageCard/ClubCard";
+import UserCard from "../components/MainPageCard/UserCard";
 
 export default function Home() {
   return (
@@ -45,7 +45,7 @@ const Allsee = styled.div`
   margin-left: 15px;
   font-size: 20px;
   font-weight: 700;
-  color: #fd3078;
+  color: ${(props) => props.theme.Main};
 `;
 
 const Cards = styled.div`

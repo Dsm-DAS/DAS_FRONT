@@ -18,6 +18,6 @@ const Container = styled.div`
   flex-direction: column;
   width: 100vw;
   height: 500px;
-  background-color: #323232;
+  background-color: ${(props) => props.theme.MainBlack};
   overflow: hidden;
 `;

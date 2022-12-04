@@ -9,6 +9,7 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [queryClient] = React.useState(() => new QueryClient());
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <RecoilRoot>
             <Header />
             <Component {...pageProps} />
+            <Footer />
             <ReactQueryDevtools initialIsOpen={true} />
           </RecoilRoot>
         </QueryClientProvider>
