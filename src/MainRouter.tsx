@@ -1,13 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import App from "./App";
+import Header from "./Components/Header";
+import MainPage from "./Components/MainPage";
+import Slide from "./Components/Slide";
 
 function MainRouter() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
-        <Route path="/" element={<App />}></Route>
-        {/*404page*/}
-        <Route path="*" element="" />
+        <Route path="/" element={<MainPage />}></Route>
+        <Route path="/slide" element={<Slide />}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -1,16 +1,12 @@
 import React, { useCallback, useState } from "react";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Logo, Home, User, Club, Wanted, Search, Bell } from "../Assets/img/Logo";
-import LogoImg from "../Assets/img/Logo.png";
-import Image from "next/image";
+import { Logo, Home, User, Club, Wanted, Search } from "../Assets/img/Logo";
 import DefaultImage from "../Assets/img/defaultImg.svg";
 
 type CurrentHeader = "HOME" | "STUDENT" | "CLUB" | "GATHER" | "MYPAGE";
 
 const Header = () => {
-  const router = useRouter();
   const [current, setCurrent] = useState<CurrentHeader>("HOME");
 
   const onClick = (value: CurrentHeader) => {
@@ -20,22 +16,22 @@ const Header = () => {
   return (
     <Container>
       <Wrapper>
-        <Link href="/">
+        <Link to="/">
           <Click onClick={() => onClick("HOME")}>
             <Logo color="white" width="86" height="22"></Logo>
           </Click>
         </Link>
-        <Link href="/">
+        <Link to="/">
           <Click onClick={() => onClick("HOME")}>
             <Home color={current === "HOME" ? "#FD3078" : "white"}></Home>
           </Click>
         </Link>
-        <Link href="/student">
+        <Link to="/student">
           <Click onClick={() => onClick("STUDENT")}>
             <User color={current === "STUDENT" ? "#FD3078" : "white"}></User>
           </Click>
         </Link>
-        <Link href="/club">
+        <Link to="/club">
           <Click onClick={() => onClick("CLUB")}>
             <Club color={current === "CLUB" ? "#FD3078" : "white"}></Club>
           </Click>
@@ -52,7 +48,7 @@ const Header = () => {
         {/* {localStorage.getItem("access_token") ? ( */}
         {/* <>
           <Bell />
-          <Link href="/My">
+          <Link to="/My">
             <Image
               src={DefaultImage}
               width={30}
@@ -64,10 +60,10 @@ const Header = () => {
         </>
         ) : ( */}
         <>
-          <Link href="/SignUpEmail">
+          <Link to="/SignUpEmail">
             <Signup>가입</Signup>
           </Link>
-          <Link href="/login">
+          <Link to="/login">
             <Login>로그인</Login>
           </Link>
         </>
